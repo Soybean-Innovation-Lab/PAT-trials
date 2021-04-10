@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/pat/dev/static/css/main.d4d33141.chunk.css",
+    "main.js": "/pat/dev/static/js/main.cc6143b1.chunk.js",
+    "main.js.map": "/pat/dev/static/js/main.cc6143b1.chunk.js.map",
+    "runtime-main.js": "/pat/dev/static/js/runtime-main.dfaf71be.js",
+    "runtime-main.js.map": "/pat/dev/static/js/runtime-main.dfaf71be.js.map",
+    "static/css/2.2108d5b4.chunk.css": "/pat/dev/static/css/2.2108d5b4.chunk.css",
+    "static/js/2.dc1376e5.chunk.js": "/pat/dev/static/js/2.dc1376e5.chunk.js",
+    "static/js/2.dc1376e5.chunk.js.map": "/pat/dev/static/js/2.dc1376e5.chunk.js.map",
+    "static/js/3.e1b59947.chunk.js": "/pat/dev/static/js/3.e1b59947.chunk.js",
+    "static/js/3.e1b59947.chunk.js.map": "/pat/dev/static/js/3.e1b59947.chunk.js.map",
+    "index.html": "/pat/dev/index.html",
+    "static/css/2.2108d5b4.chunk.css.map": "/pat/dev/static/css/2.2108d5b4.chunk.css.map",
+    "static/css/main.d4d33141.chunk.css.map": "/pat/dev/static/css/main.d4d33141.chunk.css.map",
+    "static/js/2.dc1376e5.chunk.js.LICENSE.txt": "/pat/dev/static/js/2.dc1376e5.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/pat/dev/static/media/bootstrap-icons.0f69dcdb.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dfaf71be.js",
+    "static/css/2.2108d5b4.chunk.css",
+    "static/js/2.dc1376e5.chunk.js",
+    "static/css/main.d4d33141.chunk.css",
+    "static/js/main.cc6143b1.chunk.js"
+  ]
+}
