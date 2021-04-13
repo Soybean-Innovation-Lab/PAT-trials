@@ -82,20 +82,29 @@ function dataDisplayUpdate(state, action) {
   }
   for (let i = 0; i < data.length; i++) {
     let include = true;
+    let responsible = null;
     for (let col of Object.keys(columns)) {
       if (!columns[col].filter(data[i])) {
         include = false;
-        break;
+        if (responsible === null) {
+          responsible = col;
+        } else {
+          responsible = undefined;
+        }
       }
     }
-    if (!include) {
-      continue;
-    }
-    vdata.push(data[i]);
     for (let col of Object.keys(columns)) {
       if (columns[col].builder) {
-        cdata[col] = columns[col].builder(data[i], cdata[col]);
+        cdata[col] = columns[col].builder(
+          data[i],
+          cdata[col],
+          include,
+          col === responsible
+        );
       }
+    }
+    if (include) {
+      vdata.push(data[i]);
     }
   }
   return {
@@ -140,8 +149,6 @@ function App() {
     colLoopData: {},
     visibleKeys: [],
   });
-
-  console.log(colLoopData);
 
   useEffect(() => {
     fetch("data.json")

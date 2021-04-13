@@ -3,24 +3,25 @@ import React, { useState, useEffect } from "react";
 import { common_filter_classes } from "./common";
 
 function catFunc(key) {
-  const cb = (row, struct) => {
-    struct.add(row[key]);
+  const cb = (row, struct, accepted, responsible) => {
+    if (accepted || responsible) {
+      struct.add(row[key]);
+    }
     return struct;
   };
   return [() => new Set(), cb];
 }
 function CatFilter({ col, struct, dispatch }) {
   let l = [...struct.values()].sort();
-  l.push("None");
-  const [selected, setSelected] = useState("None");
+  const [selected, setSelected] = useState([]);
   useEffect(() => {
-    if (selected === "None") {
+    if (selected.length === 0) {
       dispatch({ type: "FILTER_UPDATE", col: col, filter: (r) => true });
     } else {
       dispatch({
         type: "FILTER_UPDATE",
         col: col,
-        filter: (r) => r[col] === selected,
+        filter: (r) => selected.some((s) => s === r[col]),
       });
     }
   }, [col, dispatch, selected]);
@@ -28,9 +29,14 @@ function CatFilter({ col, struct, dispatch }) {
     <div className={common_filter_classes}>
       <h5> CatFilter for {col} </h5>
       <select
+        multiple
         className="form-select"
         value={selected}
-        onChange={(e) => setSelected(e.target.value)}
+        onChange={(e) =>
+          setSelected(
+            [...e.target.options].filter((o) => o.selected).map((o) => o.value)
+          )
+        }
       >
         {l.map((c) => (
           <option key={c} value={c}>
@@ -38,6 +44,10 @@ function CatFilter({ col, struct, dispatch }) {
           </option>
         ))}
       </select>
+      <div className="btn btn-danger" onClick={() => setSelected([])}>
+        {" "}
+        clear{" "}
+      </div>
     </div>
   );
 }

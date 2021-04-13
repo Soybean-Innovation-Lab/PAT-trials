@@ -1,7 +1,7 @@
 import { common_filter_classes } from "./common";
 
 function timeFunc(key) {
-  const cb = (row, struct) => {
+  const cb = (row, struct, accepted, responsible) => {
     return struct;
   };
   return [() => [], cb];
