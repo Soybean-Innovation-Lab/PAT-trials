@@ -63,7 +63,28 @@ function gotData(state, action) {
       initdata: initdata,
     };
   }
-  state = { ...state, data: action.data, keys: action.keys, columns: cols };
+  let data = [];
+  for (let i = 0; i < action.data.length; i++) {
+    let row = {};
+    for (let col of Object.keys(action.data[i])) {
+      switch (keys[col].filterType) {
+        case "Q":
+          row[col] = action.data[i][col];
+          break;
+        case "C":
+          row[col] = `${action.data[i][col]}`;
+          break;
+        case "T":
+          row[col] = action.data[i][col];
+          break;
+        default:
+          row[col] = action.data[i][col];
+          break;
+      }
+    }
+    data.push(row);
+  }
+  state = { ...state, data: data, keys: action.keys, columns: cols };
   return dataDisplayUpdate(state, {});
 }
 function dataDisplayUpdate(state, action) {
