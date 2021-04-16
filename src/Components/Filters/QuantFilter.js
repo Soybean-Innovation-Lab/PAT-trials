@@ -8,7 +8,7 @@ function quantFunc(key) {
 }
 function QuantFilter({ col }) {
   return (
-    <div className={common_filter_classes}>
+    <div className={`${common_filter_classes} d-none`}>
       <h5> QuantFilter for {col} </h5>
       <p className="fst-italic"> Coming soon </p>
     </div>

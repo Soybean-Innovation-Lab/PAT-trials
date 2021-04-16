@@ -15,6 +15,7 @@ function CatFilter({ col, struct, dispatch }) {
   let l = [...struct.values()].sort();
   const [selected, setSelected] = useState([]);
   useEffect(() => {
+    console.log(col, selected);
     if (selected.length === 0) {
       dispatch({ type: "FILTER_UPDATE", col: col, filter: (r) => true });
     } else {
@@ -27,7 +28,7 @@ function CatFilter({ col, struct, dispatch }) {
   }, [col, dispatch, selected]);
   return (
     <div className={common_filter_classes}>
-      <h5> CatFilter for {col} </h5>
+      <h5> Filter for {col} </h5>
       <select
         multiple
         className="form-select"
