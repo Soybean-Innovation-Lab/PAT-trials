@@ -205,7 +205,7 @@ function App() {
 
   return (
     <div className="container">
-      <div className="d-flex flex-wrap justify-content-center">
+      <div className="d-flex flex-wrap justify-content-evenly">
         {filter_els}
       </div>
       <div>

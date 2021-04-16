@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { useTable, useSortBy, usePagination } from "react-table";
 
+import { createCSVBlob } from "./csv";
+
 function DataTable({ data, keys }) {
   let columns = useMemo(() => {
     return keys.map((k) => {
@@ -106,6 +108,14 @@ function DataTable({ data, keys }) {
             </option>
           ))}
         </select>
+        <a
+          className="btn btn-primary"
+          href={window.URL.createObjectURL(createCSVBlob(data, columns))}
+          download="pat-filtered-export.csv"
+        >
+          {" "}
+          Download as CSV{" "}
+        </a>
       </div>
     </div>
   );
