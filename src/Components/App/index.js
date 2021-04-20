@@ -208,48 +208,38 @@ function App() {
       <h1 className="display-1 text-center"> Welcome to blah blah </h1>
       <h1 class="display-6">Introduction</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Tincidunt id aliquet
-        risus feugiat. Adipiscing commodo elit at imperdiet. Porttitor massa id
-        neque aliquam. Elit duis tristique sollicitudin nibh sit. Eget egestas
-        purus viverra accumsan in nisl nisi scelerisque eu. Varius duis at
-        consectetur lorem donec massa sapien. Ut sem nulla pharetra diam sit
-        amet nisl suscipit. Diam vel quam elementum pulvinar. Lectus sit amet
-        est placerat in egestas. Nunc lobortis mattis aliquam faucibus. Senectus
-        et netus et malesuada. Velit aliquet sagittis id consectetur purus ut
-        faucibus pulvinar elementum. Turpis massa sed elementum tempus. Sagittis
-        eu volutpat odio facilisis. Non odio euismod lacinia at quis risus sed.
-        Neque aliquam vestibulum morbi blandit. Sodales ut eu sem integer.
+        The Soybean Innovation Lab’s Pan-African Soybean Variety Trials (PAT)
+        fast-track the introduction and testing of commercial soybean varieties
+        sourced from across Africa, the U.S., Australia, and Latin America to
+        provide the private sector, farmers, and processors with access to a
+        broader selection of seed than what is currently available. The program
+        consortium leverages its role as an independent third party and its
+        unique access to international, regional, and national supplies of
+        high-yielding germplasm to swiftly bring new varieties to market.
       </p>
       <p>
-        <h1 class="display-6">Other stuff?</h1>
-        Arcu dictum varius duis at. Eu facilisis sed odio morbi quis commodo
-        odio aenean sed. Mauris cursus mattis molestie a iaculis at erat
-        pellentesque adipiscing. Magna sit amet purus gravida quis blandit
-        turpis cursus. Id ornare arcu odio ut sem nulla. Eget mauris pharetra et
-        ultrices neque ornare aenean euismod elementum. Quam elementum pulvinar
-        etiam non quam lacus suspendisse. Purus viverra accumsan in nisl nisi
-        scelerisque eu ultrices vitae. Eget gravida cum sociis natoque. Tellus
-        elementum sagittis vitae et leo. Feugiat in ante metus dictum at tempor
-        commodo ullamcorper. Hac habitasse platea dictumst quisque sagittis
-        purus. Turpis cursus in hac habitasse platea dictumst quisque sagittis
-        purus. Dolor sit amet consectetur adipiscing. Accumsan in nisl nisi
-        scelerisque eu ultrices vitae. Amet aliquam id diam maecenas ultricies
-        mi. Dictum sit amet justo donec enim diam vulputate ut. Molestie at
-        elementum eu facilisis sed.
+        The PAT database covers results from trials in Benin, Cameroon,
+        Ethiopia, Ghana, Kenya, Malawi, Mali, Mozambique, Nigeria, Rwanda,
+        Sudan, Uganda, Zambia and Zimbabwe from 2015 to 2020. The tool will be
+        continuously updated to include other countries and seasons of testing.
       </p>
       <h1 class="display-6">Instructions</h1>
       <p>
-        Use the filters below to select a subset of the available data. When no
-        options in a column are selected then no filter is applied to that
-        column. Click and drag or press control and click to select multiple
-        options. If on a touch screen device touch multiple options to select
-        them. Selected items are displayed, unselected items are hidden. Filters
-        are combined by taking the intersection of rows that satisfy the filter
-        for each column. Use the buttons below the table to navigate the data.
-        Click on a column header to sort by that column. A down arrow indicates
-        a descending sort. An up arrow indicates an ascending sort. Click the
-        export as CSV button to download the visible data as a CSV.
+        To explore the PAT database start with selecting one of the filters
+        below. The filters are connected, and the first selection will determine
+        the options available in the other filters. If you decide to change the
+        filter, you can click on another option within the same filter or select
+        the option clear. The result of the selected filters will show up as a
+        table at the bottom of the screen. Please click Download as CSV to
+        download the data.
+      </p>
+      <p>
+        {" "}
+        Questions about this data?{" "}
+        <a href="mailto:soybeaninnovationlab@illinois.edu">
+          {" "}
+          Please Contact SIL{" "}
+        </a>{" "}
       </p>
       <div className="d-flex flex-wrap justify-content-evenly">
         {filter_els}

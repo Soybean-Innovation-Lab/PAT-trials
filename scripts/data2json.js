@@ -10,8 +10,8 @@ let fs = require("fs");
 let Papa = require("papaparse");
 const assert = require("assert");
 
-if (proc.argv.length != 3) {
-    console.error(`USAGE: ${proc.argv[0]} ${proc.argv[1]} DATA_FILE`);
+if (proc.argv.length != 4) {
+    console.error(`USAGE: ${proc.argv[0]} ${proc.argv[1]} MAIN_DATA_FILE AVG_DATA_FILE`);
     proc.exit(1);
 }
 
@@ -74,9 +74,35 @@ let data = Papa.parse(fs.createReadStream(proc.argv[2]), {
 	    }
 	    data.push(row);
 	}
-	console.log(JSON.stringify({
-	    "keys": keys,
-	    "data": data
-	}));
+	Papa.parse(fs.createReadStream(proc.argv[3]), {
+	    delimiter: ",",
+	    header: true,
+	    dynamicTyping: true,
+	    error: function(err, file, inputElem, reason)
+	    {
+		console.error(err);
+	    },
+	    complete: function(results) {
+		if (results.errors.length != 0) {
+		    for (let err of results.errors) {
+			console.error(err);
+		    }
+		}
+		for (let row of results.data) {
+		    let comb_row = {};
+		    for (let key of Object.keys(keys)) {
+			if (row[key]) {
+			    comb_row[key] = row[key]
+			}
+		    }
+		    comb_row["Location"] = "average across country";
+		    data.push(comb_row);
+		}
+		console.log(JSON.stringify({
+		    "keys": keys,
+		    "data": data
+		}));
+	    }
+	});
     }
 });
