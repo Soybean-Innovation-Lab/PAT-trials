@@ -95,7 +95,7 @@ let data = Papa.parse(fs.createReadStream(proc.argv[2]), {
 			    comb_row[key] = row[key]
 			}
 		    }
-		    comb_row["Location"] = "average across country";
+		    comb_row["Location"] = "Average Across Locations";
 		    data.push(comb_row);
 		}
 		console.log(JSON.stringify({

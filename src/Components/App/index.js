@@ -220,8 +220,11 @@ function App() {
       <p>
         The PAT database covers results from trials in Benin, Cameroon,
         Ethiopia, Ghana, Kenya, Malawi, Mali, Mozambique, Nigeria, Rwanda,
-        Sudan, Uganda, Zambia and Zimbabwe from 2015 to 2020. The tool will be
-        continuously updated to include other countries and seasons of testing.
+        Sudan, Uganda, Zambia and Zimbabwe from 2015 to 2020.{" "}
+        <b>
+          The tool will be continuously updated to include other countries and
+          seasons of testing.
+        </b>
       </p>
       <h1 class="display-6">Instructions</h1>
       <p>
@@ -229,9 +232,9 @@ function App() {
         below. The filters are connected, and the first selection will determine
         the options available in the other filters. If you decide to change the
         filter, you can click on another option within the same filter or select
-        the option clear. The result of the selected filters will show up as a
-        table at the bottom of the screen. Please click Download as CSV to
-        download the data.
+        the option <b>clear</b>. The result of the selected filters will show up
+        as a table at the bottom of the screen. Please click{" "}
+        <b>Download as CSV</b> to download the data.
       </p>
       <p>
         {" "}
