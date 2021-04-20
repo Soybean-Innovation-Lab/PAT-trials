@@ -247,7 +247,7 @@ function App() {
       <div className="d-flex flex-wrap justify-content-evenly">
         {filter_els}
       </div>
-      <div>
+      <div className="mb-5">
         <DataTable keys={visibleKeys} data={visibleData} />
       </div>
     </div>
