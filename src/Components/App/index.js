@@ -207,7 +207,11 @@ function App() {
 
   return (
     <div className="container">
-      <img src={sil_img} style={{ "max-width": "300px" }} />
+      <img
+        src={sil_img}
+        className="mx-auto d-block"
+        style={{ "max-width": "300px" }}
+      />
       <h1 className="display-1 text-center">
         Pan-African Soybean Variety Trials (PAT) Database{" "}
       </h1>
