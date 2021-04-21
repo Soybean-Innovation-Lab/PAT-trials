@@ -30,7 +30,9 @@ let data = Papa.parse(fs.createReadStream(proc.argv[2]), {
 	    }
 	}
 	let keys = {};
-	for (let key of Object.keys(results.data[0])) {
+	let SORTED_KEYS = [
+	    "Last Update","Country; DC","Season; DC","Year_metric","Country-Season","Location; DC","LOCATION_ID","Trial","Ext_Report","Listed by Country (across location-ER)","Lat","Long","SITE_ALT","Entry; CD","Grain Yield (ton/ha); QD","Grain Yield (kg/ha)","Days to Maturity; DQ","Protein (%); DQ","Oil (%); DQ","Days to Flowering; DQ","Plant Height (cm); DQ","Seed Weight (g); DQ","Lodging Score (1-5); DQ","Shattering Score (1-5); D","DATE_PLANT","DATE_HARV","IrrigMethod_text","Entry_type","Registration Status","Seed Supplier Name; DC","Source_Type","Seed Supplier Country of Origin; DC","Organization_Partners","Org_Type","Org_Country"]
+	for (let key of SORTED_KEYS) {
 	    const split = key.split(";");
 	    if (split.length == 1) {
 		keys[key] = {

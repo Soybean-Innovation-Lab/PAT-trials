@@ -5,6 +5,8 @@ import { CatFilter, catFunc } from "../Filters/CategoryFilter";
 import { TimeFilter, timeFunc } from "../Filters/TimeFilter";
 
 import DataTable from "../Table";
+
+import sil_img from "./sil.png";
 /*
   What I'm think wrt in data display/select optoins
   - "D": this column should be included in display
@@ -205,7 +207,10 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="display-1 text-center"> Welcome to blah blah </h1>
+      <img src={sil_img} style={{ "max-width": "300px" }} />
+      <h1 className="display-1 text-center">
+        Pan-African Soybean Variety Trials (PAT) Database{" "}
+      </h1>
       <h1 class="display-6">Introduction</h1>
       <p>
         The Soybean Innovation Lab’s Pan-African Soybean Variety Trials (PAT)
@@ -230,10 +235,11 @@ function App() {
       <p>
         To explore the PAT database start with selecting one of the filters
         below. The filters are connected, and the first selection will determine
-        the options available in the other filters. If you decide to change the
-        filter, you can click on another option within the same filter or select
-        the option <b>clear</b>. The result of the selected filters will show up
-        as a table at the bottom of the screen. Please click{" "}
+        the options available in the other filters. You can select multiple
+        options by holding the Ctrl key while clicking. If you decide to change
+        the filter, you can click on another option within the same filter or
+        select the option <b>clear</b>. The result of the selected filters will
+        show up as a table at the bottom of the screen. Please click{" "}
         <b>Download as CSV</b> to download the data.
       </p>
       <p>
