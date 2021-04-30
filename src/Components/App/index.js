@@ -210,6 +210,7 @@ function App() {
       <img
         src={sil_img}
         className="mx-auto d-block"
+        alt="SIL logo"
         style={{ "max-width": "300px" }}
       />
       <h1 className="display-1 text-center">
