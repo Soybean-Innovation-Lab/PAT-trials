@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { common_filter_classes } from "./common";
+import { SeasonModal } from "./season";
 
 function catFunc(key) {
   const cb = (row, struct, accepted, responsible) => {
@@ -45,6 +46,7 @@ function CatFilter({ col, struct, dispatch }) {
           </option>
         ))}
       </select>
+      {col === "Season" && <SeasonModal />}
       <div className="btn btn-danger" onClick={() => setSelected([])}>
         {" "}
         clear{" "}
