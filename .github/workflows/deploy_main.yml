@@ -18,7 +18,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           yarn
-          env CI=false PUBLIC_URL=/PAT-trials-database/main yarn run build
+          env CI=false PUBLIC_URL=/PAT-trials/main yarn run build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
