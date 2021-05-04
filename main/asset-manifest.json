@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/PAT-trials/main/static/css/main.37b87bc9.chunk.css",
-    "main.js": "/PAT-trials/main/static/js/main.f9154442.chunk.js",
-    "main.js.map": "/PAT-trials/main/static/js/main.f9154442.chunk.js.map",
-    "runtime-main.js": "/PAT-trials/main/static/js/runtime-main.92b848a7.js",
-    "runtime-main.js.map": "/PAT-trials/main/static/js/runtime-main.92b848a7.js.map",
-    "static/css/2.c5637c4e.chunk.css": "/PAT-trials/main/static/css/2.c5637c4e.chunk.css",
-    "static/js/2.6b930f11.chunk.js": "/PAT-trials/main/static/js/2.6b930f11.chunk.js",
-    "static/js/2.6b930f11.chunk.js.map": "/PAT-trials/main/static/js/2.6b930f11.chunk.js.map",
-    "static/js/3.bad9603c.chunk.js": "/PAT-trials/main/static/js/3.bad9603c.chunk.js",
-    "static/js/3.bad9603c.chunk.js.map": "/PAT-trials/main/static/js/3.bad9603c.chunk.js.map",
-    "index.html": "/PAT-trials/main/index.html",
-    "static/css/2.c5637c4e.chunk.css.map": "/PAT-trials/main/static/css/2.c5637c4e.chunk.css.map",
-    "static/css/main.37b87bc9.chunk.css.map": "/PAT-trials/main/static/css/main.37b87bc9.chunk.css.map",
-    "static/js/2.6b930f11.chunk.js.LICENSE.txt": "/PAT-trials/main/static/js/2.6b930f11.chunk.js.LICENSE.txt",
-    "static/media/index.scss": "/PAT-trials/main/static/media/bootstrap-icons.0f69dcdb.woff",
-    "static/media/sil.05e9e8c0.png": "/PAT-trials/main/static/media/sil.05e9e8c0.png"
+    "main.css": "/PAT-trials-database/main/static/css/main.37b87bc9.chunk.css",
+    "main.js": "/PAT-trials-database/main/static/js/main.a8afe61b.chunk.js",
+    "main.js.map": "/PAT-trials-database/main/static/js/main.a8afe61b.chunk.js.map",
+    "runtime-main.js": "/PAT-trials-database/main/static/js/runtime-main.4f0f260f.js",
+    "runtime-main.js.map": "/PAT-trials-database/main/static/js/runtime-main.4f0f260f.js.map",
+    "static/css/2.ef707235.chunk.css": "/PAT-trials-database/main/static/css/2.ef707235.chunk.css",
+    "static/js/2.c35c37ea.chunk.js": "/PAT-trials-database/main/static/js/2.c35c37ea.chunk.js",
+    "static/js/2.c35c37ea.chunk.js.map": "/PAT-trials-database/main/static/js/2.c35c37ea.chunk.js.map",
+    "static/js/3.bad9603c.chunk.js": "/PAT-trials-database/main/static/js/3.bad9603c.chunk.js",
+    "static/js/3.bad9603c.chunk.js.map": "/PAT-trials-database/main/static/js/3.bad9603c.chunk.js.map",
+    "index.html": "/PAT-trials-database/main/index.html",
+    "static/css/2.ef707235.chunk.css.map": "/PAT-trials-database/main/static/css/2.ef707235.chunk.css.map",
+    "static/css/main.37b87bc9.chunk.css.map": "/PAT-trials-database/main/static/css/main.37b87bc9.chunk.css.map",
+    "static/js/2.c35c37ea.chunk.js.LICENSE.txt": "/PAT-trials-database/main/static/js/2.c35c37ea.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/PAT-trials-database/main/static/media/bootstrap-icons.0f69dcdb.woff",
+    "static/media/sil.05e9e8c0.png": "/PAT-trials-database/main/static/media/sil.05e9e8c0.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.92b848a7.js",
-    "static/css/2.c5637c4e.chunk.css",
-    "static/js/2.6b930f11.chunk.js",
+    "static/js/runtime-main.4f0f260f.js",
+    "static/css/2.ef707235.chunk.css",
+    "static/js/2.c35c37ea.chunk.js",
     "static/css/main.37b87bc9.chunk.css",
-    "static/js/main.f9154442.chunk.js"
+    "static/js/main.a8afe61b.chunk.js"
   ]
 }
