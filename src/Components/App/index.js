@@ -174,7 +174,9 @@ function App() {
   });
 
   useEffect(() => {
-    fetch("data.json")
+    fetch(
+      "https://sil-interactive-soybean-map-data-1.s3.amazonaws.com/pat_db.json"
+    )
       .then((d) => d.json())
       .then((d) => {
         dispatch({ type: "DATA", data: d.data, keys: d.keys });
