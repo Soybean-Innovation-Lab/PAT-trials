@@ -45,7 +45,7 @@ const SeasonModal = () => {
                       colspan="2"
                       scope="col"
                     >
-                      Season 1
+                      Season 2
                     </th>
                   </tr>
                   <tr>
