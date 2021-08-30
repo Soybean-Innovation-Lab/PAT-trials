@@ -156,6 +156,15 @@ function countryDisplayUpdate(state, action) {
       }
     }
   }
+  const mySet = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Country"].has(common[i]["Country"])) {
+      mySet.add(common[i]["Country"]);
+    }
+  }
+  cdata["Country"] = mySet;
+
+  
   vdata = common;
   return {
     ...state,
@@ -236,6 +245,13 @@ function seasonDisplayUpdate(state, action) {
     }
   }
   vdata = common;
+  const mySet = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Season"].has(common[i]["Season"])) {
+      mySet.add(common[i]["Season"]);
+    }
+  }
+  cdata["Season"] = mySet;
   return {
     ...state,
     visibleData: vdata,
@@ -311,6 +327,15 @@ function locationDisplayUpdate(state, action) {
     }
   }
   vdata = common;
+  vdata = common;
+  const mySet = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Location"].has(common[i]["Location"])) {
+      mySet.add(common[i]["Location"]);
+    }
+  }
+  cdata["Location"] = mySet;
+
   return {
     ...state,
     visibleData: vdata,
