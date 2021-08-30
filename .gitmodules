@@ -1,0 +1,3 @@
+[submodule "path_to_submodule"] 
+  path = getssl 
+  url = git://Soybean-Innovation-Lab/PAT-trials/
