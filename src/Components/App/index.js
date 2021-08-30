@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, Component } from "react";
 
 import { QuantFilter, quantFunc } from "../Filters/QuantFilter";
 import { CatFilter, catFunc } from "../Filters/CategoryFilter";
@@ -89,8 +89,8 @@ function gotData(state, action) {
   state = { ...state, data: data, keys: action.keys, columns: cols };
   return dataDisplayUpdate(state, {});
 }
-function dataDisplayUpdate(state, action) {
-  const { columns, data } = state;
+function countryDisplayUpdate(state, action) {
+  const { columns, data, selected } = state;
   let vkeys = [];
   for (let col of Object.keys(columns)) {
     if (columns[col].display) {
@@ -116,6 +116,7 @@ function dataDisplayUpdate(state, action) {
         }
       }
     }
+    
     for (let col of Object.keys(columns)) {
       if (columns[col].builder) {
         cdata[col] = columns[col].builder(
@@ -126,6 +127,235 @@ function dataDisplayUpdate(state, action) {
         );
       }
     }
+
+    if (include) {
+      vdata.push(data[i]);
+    }
+    
+  }
+  let s = Array.from(selected);
+  let vselected = [];
+  for (let j = 0; j < s.length; j++) {
+    let toAdd = [];
+    for (let i = 0; i < vdata.length; i++) {
+      if (vdata[i]["Entry"] === s[j]) {
+        toAdd.push(vdata[i]);
+      }
+    } 
+    vselected.push(toAdd);
+  }
+  let common = [];
+  for (let i = 0; i < vselected.length; i++) {
+    for (let j = i + 1; j < vselected.length; j++) {
+      for (let k = 0; k < vselected[i].length; k++) {
+        for (let l = 0; l < vselected[j].length; l++) {
+          if (vselected[i][k]["Country"] === vselected[j][l]["Country"]) {
+            common.push(vselected[i][k]);
+          }
+        }
+      }
+    }
+  }
+  vdata = common;
+  return {
+    ...state,
+    visibleData: vdata,
+    visibleKeys: vkeys,
+    colLoopData: cdata,
+  };
+}
+
+function seasonDisplayUpdate(state, action) {
+  const { columns, data, selected } = state;
+  let vkeys = [];
+  for (let col of Object.keys(columns)) {
+    if (columns[col].display) {
+      vkeys.push(col);
+    }
+  }
+  let vdata = [];
+  let cdata = {};
+  for (let col of Object.keys(columns)) {
+    cdata[col] =
+      typeof columns[col].initdata === "function" && columns[col].initdata();
+  }
+  for (let i = 0; i < data.length; i++) {
+    let include = true;
+    let responsible = null;
+    for (let col of Object.keys(columns)) {
+      if (!columns[col].filter(data[i])) {
+        include = false;
+        if (responsible === null) {
+          responsible = col;
+        } else {
+          responsible = undefined;
+        }
+      }
+    }
+    
+    for (let col of Object.keys(columns)) {
+      if (columns[col].builder) {
+        cdata[col] = columns[col].builder(
+          data[i],
+          cdata[col],
+          include,
+          col === responsible
+        );
+      }
+    }
+
+    if (include) {
+      vdata.push(data[i]);
+    }
+    
+  }
+  let s = Array.from(selected);
+  let vselected = [];
+  for (let j = 0; j < s.length; j++) {
+    let toAdd = [];
+    for (let i = 0; i < vdata.length; i++) {
+      if (vdata[i]["Entry"] === s[j]) {
+        toAdd.push(vdata[i]);
+      }
+    } 
+    vselected.push(toAdd);
+  }
+  //check if multiple arrays have common elements
+  let common = [];
+  for (let i = 0; i < vselected.length; i++) {
+    for (let j = i + 1; j < vselected.length; j++) {
+      for (let k = 0; k < vselected[i].length; k++) {
+        for (let l = 0; l < vselected[j].length; l++) {
+          if (vselected[i][k]["Season"] === vselected[j][l]["Season"]) {
+            common.push(vselected[i][k]);
+          }
+        }
+      }
+    }
+  }
+  vdata = common;
+  return {
+    ...state,
+    visibleData: vdata,
+    visibleKeys: vkeys,
+    colLoopData: cdata,
+  };
+}
+function locationDisplayUpdate(state, action) {
+  const { columns, data, selected } = state;
+  let vkeys = [];
+  for (let col of Object.keys(columns)) {
+    if (columns[col].display) {
+      vkeys.push(col);
+    }
+  }
+  let vdata = [];
+  let cdata = {};
+  for (let col of Object.keys(columns)) {
+    cdata[col] =
+      typeof columns[col].initdata === "function" && columns[col].initdata();
+  }
+  for (let i = 0; i < data.length; i++) {
+    let include = true;
+    let responsible = null;
+    for (let col of Object.keys(columns)) {
+      if (!columns[col].filter(data[i])) {
+        include = false;
+        if (responsible === null) {
+          responsible = col;
+        } else {
+          responsible = undefined;
+        }
+      }
+    }
+    
+    for (let col of Object.keys(columns)) {
+      if (columns[col].builder) {
+        cdata[col] = columns[col].builder(
+          data[i],
+          cdata[col],
+          include,
+          col === responsible
+        );
+      }
+    }
+
+    if (include) {
+      vdata.push(data[i]);
+    }
+    
+  }
+  let s = Array.from(selected);
+  let vselected = [];
+  for (let j = 0; j < s.length; j++) {
+    let toAdd = [];
+    for (let i = 0; i < vdata.length; i++) {
+      if (vdata[i]["Entry"] === s[j]) {
+        toAdd.push(vdata[i]);
+      }
+    } 
+    vselected.push(toAdd);
+  }
+  let common = [];
+  for (let i = 0; i < vselected.length; i++) {
+    for (let j = i + 1; j < vselected.length; j++) {
+      for (let k = 0; k < vselected[i].length; k++) {
+        for (let l = 0; l < vselected[j].length; l++) {
+          if (vselected[i][k]["Location"] === vselected[j][l]["Location"]) {
+            common.push(vselected[i][k]);
+          }
+        }
+      }
+    }
+  }
+  vdata = common;
+  return {
+    ...state,
+    visibleData: vdata,
+    visibleKeys: vkeys,
+    colLoopData: cdata,
+  };
+}
+function dataDisplayUpdate(state, action) {
+  const { columns, data } = state;
+  let vkeys = [];
+  for (let col of Object.keys(columns)) {
+    if (columns[col].display) {
+      vkeys.push(col);
+    }
+  }
+  let vdata = [];
+  let cdata = {};
+  for (let col of Object.keys(columns)) {
+    cdata[col] =
+      typeof columns[col].initdata === "function" && columns[col].initdata();
+  }
+  for (let i = 0; i < data.length; i++) {
+    
+    let include = true;
+    let responsible = null;
+    for (let col of Object.keys(columns)) {
+      if (!columns[col].filter(data[i])) {
+        include = false;
+        if (responsible === null) {
+          responsible = col;
+        } else {
+          responsible = undefined;
+        }
+      }
+    }
+    
+    for (let col of Object.keys(columns)) {
+      if (columns[col].builder) {
+        cdata[col] = columns[col].builder(
+          data[i],
+          cdata[col],
+          include,
+          col === responsible
+        );
+      }
+    }
+    
     if (include) {
       vdata.push(data[i]);
     }
@@ -137,7 +367,9 @@ function dataDisplayUpdate(state, action) {
     colLoopData: cdata,
   };
 }
+
 function reducer(state, action) {
+  let columns = state.columns;
   switch (action.type) {
     case "DATA":
       state = gotData(state, action);
@@ -149,18 +381,68 @@ function reducer(state, action) {
       state = dataDisplayUpdate(state, action);
       break;
     case "FILTER_UPDATE":
-      let columns = state.columns;
       columns[action.col].filter = action.filter;
       state = { ...state, columns: columns };
       state = dataDisplayUpdate(state, action);
+      break;
+    case "COUNTRY_DISPLAY_UPDATE":
+      columns[action.col].filter = action.filter;
+      state = { ...state, columns: columns, selected: action.selected };
+      state = countryDisplayUpdate(state, action);
+      break;
+      case "SEASON_DISPLAY_UPDATE":
+      columns[action.col].filter = action.filter;
+      state = { ...state, columns: columns, selected: action.selected };
+      state = seasonDisplayUpdate(state, action);
+      break;
+      case "LOCATION_DISPLAY_UPDATE":
+      columns[action.col].filter = action.filter;
+      state = { ...state, columns: columns, selected: action.selected };
+      state = locationDisplayUpdate(state, action);
       break;
     default:
       break;
   }
   return state;
 }
-
+let countryDisplay, seasonDisplay, locationDisplay;
+function setChecks(c, s, l) {
+  countryDisplay = c;
+  seasonDisplay = s;
+  locationDisplay = l;
+}
+function getChecks() {
+  return {
+    countryDisplay,
+    seasonDisplay,
+    locationDisplay,
+  };
+}
+export { getChecks };
 function App() {
+  const [checkedCountry, setCheckedCountry] = React.useState(false);
+  const [checkedSeason, setCheckedSeason] = React.useState(false);
+  const [checkedLocation, setCheckedLocation] = React.useState(false);
+
+  const handleChangeOne = () => {
+    setCheckedCountry(!checkedCountry);
+  };
+ 
+  const handleChangeTwo = () => {
+    setCheckedSeason(!checkedSeason);
+  };
+  const handleChangeThree = () => {
+    setCheckedLocation(!checkedLocation);
+  };
+  const Checkbox = ({ label, value, onChange }) => {
+    return (
+      <label>
+        <input type="checkbox" checked={value} onChange={onChange} />
+        {label}
+      </label>
+    );
+  };
+  setChecks(checkedCountry, checkedSeason, checkedLocation);
   const [
     { data, error, columns, visibleData, colLoopData, visibleKeys },
     dispatch,
@@ -172,7 +454,7 @@ function App() {
     colLoopData: {},
     visibleKeys: [],
   });
-
+  
   useEffect(() => {
     fetch(
       "https://sil-interactive-soybean-map-data-1.s3.amazonaws.com/pat_db.json"
@@ -206,7 +488,6 @@ function App() {
       );
     }
   }
-
   return (
     <div className="container">
       <img
@@ -257,6 +538,27 @@ function App() {
           Please Contact SIL{" "}
         </a>{" "}
       </p>
+      <div>
+        <p>If you select multiple entries, check the category you wish to find overlaps with. 
+          If you want to display all of the data, leave the checkboxes blank.</p>
+      <Checkbox class="check"
+        label=" Country"
+        value={checkedCountry}
+        onChange={handleChangeOne}
+      />
+      {"    "}
+      <Checkbox
+        label=" Season"
+        value={checkedSeason}
+        onChange={handleChangeTwo}
+      />
+      {"    "}
+      <Checkbox
+        label=" Location"
+        value={checkedLocation}
+        onChange={handleChangeThree}
+      />
+    </div>
       <div className="d-flex flex-wrap justify-content-evenly">
         {filter_els}
       </div>
