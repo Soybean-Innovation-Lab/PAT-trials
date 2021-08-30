@@ -17,7 +17,7 @@ function catFunc(key) {
 function CatFilter({ col, struct, dispatch }) {
   let checks = getChecks();
   let checkBoxUpdate;
-  if (checks["countryDisplay"] || checks["seasonDisplay"] || checks["categoryDisplay"]) {
+  if (checks["countryDisplay"]) {
     checkBoxUpdate = "COUNTRY_DISPLAY_UPDATE";
   } else if (checks["seasonDisplay"]) {
     checkBoxUpdate = "SEASON_DISPLAY_UPDATE";

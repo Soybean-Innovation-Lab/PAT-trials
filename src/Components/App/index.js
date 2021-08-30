@@ -226,6 +226,8 @@ function seasonDisplayUpdate(state, action) {
     for (let j = i + 1; j < vselected.length; j++) {
       for (let k = 0; k < vselected[i].length; k++) {
         for (let l = 0; l < vselected[j].length; l++) {
+          console.log(vselected[i][k]["Season"]);
+          console.log(vselected[j][l]["Season"]);
           if (vselected[i][k]["Season"] === vselected[j][l]["Season"]) {
             common.push(vselected[i][k]);
           }
