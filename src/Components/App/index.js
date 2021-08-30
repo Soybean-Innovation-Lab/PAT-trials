@@ -539,7 +539,7 @@ function App() {
         </a>{" "}
       </p>
       <div>
-        <p>If you select multiple entries, check the category you wish to find overlaps with. 
+        <p>If you wish select multiple entries, check the category you wish to find overlaps with. 
           If you want to display all of the data, leave the checkboxes blank.</p>
       <Checkbox class="check"
         label=" Country"
