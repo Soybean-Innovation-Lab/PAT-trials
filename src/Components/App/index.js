@@ -163,7 +163,20 @@ function countryDisplayUpdate(state, action) {
     }
   }
   cdata["Country"] = mySet;
-
+  const mySet2 = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Location"].has(common[i]["Location"])) {
+      mySet2.add(common[i]["Location"]);
+    }
+  }
+  cdata["Location"] = mySet2;
+  const mySet3 = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Season"].has(common[i]["Season"])) {
+      mySet3.add(common[i]["Season"]);
+    }
+  }
+  cdata["Season"] = mySet3;
   
   vdata = common;
   return {
@@ -247,11 +260,25 @@ function seasonDisplayUpdate(state, action) {
   vdata = common;
   const mySet = new Set();
   for (let i = 0; i < common.length; i++) {
-    if (cdata["Season"].has(common[i]["Season"])) {
-      mySet.add(common[i]["Season"]);
+    if (cdata["Country"].has(common[i]["Country"])) {
+      mySet.add(common[i]["Country"]);
     }
   }
-  cdata["Season"] = mySet;
+  cdata["Country"] = mySet;
+  const mySet2 = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Location"].has(common[i]["Location"])) {
+      mySet2.add(common[i]["Location"]);
+    }
+  }
+  cdata["Location"] = mySet2;
+  const mySet3 = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Season"].has(common[i]["Season"])) {
+      mySet3.add(common[i]["Season"]);
+    }
+  }
+  cdata["Season"] = mySet3;
   return {
     ...state,
     visibleData: vdata,
@@ -327,14 +354,27 @@ function locationDisplayUpdate(state, action) {
     }
   }
   vdata = common;
-  vdata = common;
   const mySet = new Set();
   for (let i = 0; i < common.length; i++) {
-    if (cdata["Location"].has(common[i]["Location"])) {
-      mySet.add(common[i]["Location"]);
+    if (cdata["Country"].has(common[i]["Country"])) {
+      mySet.add(common[i]["Country"]);
     }
   }
-  cdata["Location"] = mySet;
+  cdata["Country"] = mySet;
+  const mySet2 = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Location"].has(common[i]["Location"])) {
+      mySet2.add(common[i]["Location"]);
+    }
+  }
+  cdata["Location"] = mySet2;
+  const mySet3 = new Set();
+  for (let i = 0; i < common.length; i++) {
+    if (cdata["Season"].has(common[i]["Season"])) {
+      mySet3.add(common[i]["Season"]);
+    }
+  }
+  cdata["Season"] = mySet3;
 
   return {
     ...state,
