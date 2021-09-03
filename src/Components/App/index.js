@@ -605,10 +605,13 @@ function App() {
           Please Contact SIL{" "}
         </a>{" "}
       </p>
-      <div>
-        <p>If you wish select multiple entries, check the category you wish to find overlaps with. 
+      <div class="checkbox">
+        <div class="center-text">
+        <p> If you wish select multiple entries, check the category you wish to find overlaps with. 
           If you want to display all of the data, leave the checkboxes blank.</p>
-      <Checkbox class="check"
+          </div>
+          <div class="center">
+      <Checkbox
         label=" Country"
         value={checkedCountry}
         onChange={handleChangeOne}
@@ -625,6 +628,7 @@ function App() {
         value={checkedLocation}
         onChange={handleChangeThree}
       />
+      </div>
     </div>
       <div className="d-flex flex-wrap justify-content-evenly">
         {filter_els}
