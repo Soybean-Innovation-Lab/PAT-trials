@@ -135,27 +135,38 @@ function countryDisplayUpdate(state, action) {
   }
   let s = Array.from(selected);
   let vselected = [];
+  //goes through the selected and checks if it is in the new data
   for (let j = 0; j < s.length; j++) {
-    let toAdd = [];
+    let entryList = [];
+    //goes through vdata and checks if the selected is in it
     for (let i = 0; i < vdata.length; i++) {
       if (vdata[i]["Entry"] === s[j]) {
-        toAdd.push(vdata[i]);
+        entryList.push(vdata[i]);
+        
       }
     } 
-    vselected.push(toAdd);
+    vselected.push(entryList);
   }
+  
   let common = [];
+  let country_array  = [];
   for (let i = 0; i < vselected.length; i++) {
-    for (let j = i + 1; j < vselected.length; j++) {
-      for (let k = 0; k < vselected[i].length; k++) {
-        for (let l = 0; l < vselected[j].length; l++) {
-          if (vselected[i][k]["Country"] === vselected[j][l]["Country"]) {
-            common.push(vselected[i][k]);
-          }
-        }
+    let toAdd = [];
+    for (let j = 0; j < vselected[i].length; j++) {
+      toAdd.push(vselected[i][j]["Country"]); 
+    }
+    country_array.push(toAdd);
+  }
+  let result = country_array.reduce((a, b) => a.filter(c => b.includes(c)));
+  let uniqueResult = [...new Set(result)];
+  for (let i = 0; i < vselected.length; i++) {
+    for (let j = 0; j < vselected[i].length; j++) {
+      if (uniqueResult.includes(vselected[i][j]["Country"])) {
+        common.push(vselected[i][j]);
       }
     }
   }
+
   const mySet = new Set();
   for (let i = 0; i < common.length; i++) {
     if (cdata["Country"].has(common[i]["Country"])) {
@@ -244,20 +255,23 @@ function seasonDisplayUpdate(state, action) {
   }
   //check if multiple arrays have common elements
   let common = [];
+  let season_array  = [];
   for (let i = 0; i < vselected.length; i++) {
-    for (let j = i + 1; j < vselected.length; j++) {
-      for (let k = 0; k < vselected[i].length; k++) {
-        for (let l = 0; l < vselected[j].length; l++) {
-          console.log(vselected[i][k]["Season"]);
-          console.log(vselected[j][l]["Season"]);
-          if (vselected[i][k]["Season"] === vselected[j][l]["Season"]) {
-            common.push(vselected[i][k]);
-          }
-        }
+    let toAdd = [];
+    for (let j = 0; j < vselected[i].length; j++) {
+      toAdd.push(vselected[i][j]["Season"]); 
+    }
+    season_array.push(toAdd);
+  }
+  let result = season_array.reduce((a, b) => a.filter(c => b.includes(c)));
+  let uniqueResult = [...new Set(result)];
+  for (let i = 0; i < vselected.length; i++) {
+    for (let j = 0; j < vselected[i].length; j++) {
+      if (uniqueResult.includes(vselected[i][j]["Season"])) {
+        common.push(vselected[i][j]);
       }
     }
   }
-  vdata = common;
   const mySet = new Set();
   for (let i = 0; i < common.length; i++) {
     if (cdata["Country"].has(common[i]["Country"])) {
@@ -279,6 +293,7 @@ function seasonDisplayUpdate(state, action) {
     }
   }
   cdata["Season"] = mySet3;
+  vdata = common;
   return {
     ...state,
     visibleData: vdata,
@@ -341,15 +356,22 @@ function locationDisplayUpdate(state, action) {
     } 
     vselected.push(toAdd);
   }
+  //check if multiple arrays have common elements
   let common = [];
+  let location_array  = [];
   for (let i = 0; i < vselected.length; i++) {
-    for (let j = i + 1; j < vselected.length; j++) {
-      for (let k = 0; k < vselected[i].length; k++) {
-        for (let l = 0; l < vselected[j].length; l++) {
-          if (vselected[i][k]["Location"] === vselected[j][l]["Location"]) {
-            common.push(vselected[i][k]);
-          }
-        }
+    let toAdd = [];
+    for (let j = 0; j < vselected[i].length; j++) {
+      toAdd.push(vselected[i][j]["Location"]); 
+    }
+    location_array.push(toAdd);
+  }
+  let result = location_array.reduce((a, b) => a.filter(c => b.includes(c)));
+  let uniqueResult = [...new Set(result)];
+  for (let i = 0; i < vselected.length; i++) {
+    for (let j = 0; j < vselected[i].length; j++) {
+      if (uniqueResult.includes(vselected[i][j]["Location"])) {
+        common.push(vselected[i][j]);
       }
     }
   }
