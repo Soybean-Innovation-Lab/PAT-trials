@@ -147,13 +147,15 @@ function countryDisplayUpdate(state, action) {
     } 
     vselected.push(entryList);
   }
-  
+  let filterState = ["Country", "Season", "Location"];
+  let filterData = [];
+  for (let k = 0; k < filterState.length; k++) {
   let common = [];
   let country_array  = [];
   for (let i = 0; i < vselected.length; i++) {
     let toAdd = [];
     for (let j = 0; j < vselected[i].length; j++) {
-      toAdd.push(vselected[i][j]["Country"]); 
+      toAdd.push(vselected[i][j][filterState[k]]); 
     }
     country_array.push(toAdd);
   }
@@ -161,7 +163,7 @@ function countryDisplayUpdate(state, action) {
   let uniqueResult = [...new Set(result)];
   for (let i = 0; i < vselected.length; i++) {
     for (let j = 0; j < vselected[i].length; j++) {
-      if (uniqueResult.includes(vselected[i][j]["Country"])) {
+      if (uniqueResult.includes(vselected[i][j][filterState[k]])) {
         common.push(vselected[i][j]);
       }
     }
@@ -169,27 +171,20 @@ function countryDisplayUpdate(state, action) {
 
   const mySet = new Set();
   for (let i = 0; i < common.length; i++) {
-    if (cdata["Country"].has(common[i]["Country"])) {
-      mySet.add(common[i]["Country"]);
+    if (cdata[filterState[k]].has(common[i][filterState[k]])) {
+      mySet.add(common[i][filterState[k]]);
     }
   }
-  cdata["Country"] = mySet;
-  const mySet2 = new Set();
-  for (let i = 0; i < common.length; i++) {
-    if (cdata["Location"].has(common[i]["Location"])) {
-      mySet2.add(common[i]["Location"]);
-    }
-  }
-  cdata["Location"] = mySet2;
-  const mySet3 = new Set();
-  for (let i = 0; i < common.length; i++) {
-    if (cdata["Season"].has(common[i]["Season"])) {
-      mySet3.add(common[i]["Season"]);
-    }
-  }
-  cdata["Season"] = mySet3;
+
+  cdata[filterState[k]] = mySet;
+  filterData.push(common);
+}
+  let result = filterData.reduce((a, b) => a.filter(c => b.includes(c)));
+  let uniqueResult = [...new Set(result)];
+  console.log(filterData);
+  console.log(uniqueResult);
+  vdata = uniqueResult;
   
-  vdata = common;
   return {
     ...state,
     visibleData: vdata,
@@ -198,213 +193,6 @@ function countryDisplayUpdate(state, action) {
   };
 }
 
-function seasonDisplayUpdate(state, action) {
-  const { columns, data, selected } = state;
-  let vkeys = [];
-  for (let col of Object.keys(columns)) {
-    if (columns[col].display) {
-      vkeys.push(col);
-    }
-  }
-  let vdata = [];
-  let cdata = {};
-  for (let col of Object.keys(columns)) {
-    cdata[col] =
-      typeof columns[col].initdata === "function" && columns[col].initdata();
-  }
-  for (let i = 0; i < data.length; i++) {
-    let include = true;
-    let responsible = null;
-    for (let col of Object.keys(columns)) {
-      if (!columns[col].filter(data[i])) {
-        include = false;
-        if (responsible === null) {
-          responsible = col;
-        } else {
-          responsible = undefined;
-        }
-      }
-    }
-    
-    for (let col of Object.keys(columns)) {
-      if (columns[col].builder) {
-        cdata[col] = columns[col].builder(
-          data[i],
-          cdata[col],
-          include,
-          col === responsible
-        );
-      }
-    }
-
-    if (include) {
-      vdata.push(data[i]);
-    }
-    
-  }
-  let s = Array.from(selected);
-  let vselected = [];
-  for (let j = 0; j < s.length; j++) {
-    let toAdd = [];
-    for (let i = 0; i < vdata.length; i++) {
-      if (vdata[i]["Entry"] === s[j]) {
-        toAdd.push(vdata[i]);
-      }
-    } 
-    vselected.push(toAdd);
-  }
-  //check if multiple arrays have common elements
-  let common = [];
-  let season_array  = [];
-  for (let i = 0; i < vselected.length; i++) {
-    let toAdd = [];
-    for (let j = 0; j < vselected[i].length; j++) {
-      toAdd.push(vselected[i][j]["Season"]); 
-    }
-    season_array.push(toAdd);
-  }
-  let result = season_array.reduce((a, b) => a.filter(c => b.includes(c)));
-  let uniqueResult = [...new Set(result)];
-  for (let i = 0; i < vselected.length; i++) {
-    for (let j = 0; j < vselected[i].length; j++) {
-      if (uniqueResult.includes(vselected[i][j]["Season"])) {
-        common.push(vselected[i][j]);
-      }
-    }
-  }
-  const mySet = new Set();
-  for (let i = 0; i < common.length; i++) {
-    if (cdata["Country"].has(common[i]["Country"])) {
-      mySet.add(common[i]["Country"]);
-    }
-  }
-  cdata["Country"] = mySet;
-  const mySet2 = new Set();
-  for (let i = 0; i < common.length; i++) {
-    if (cdata["Location"].has(common[i]["Location"])) {
-      mySet2.add(common[i]["Location"]);
-    }
-  }
-  cdata["Location"] = mySet2;
-  const mySet3 = new Set();
-  for (let i = 0; i < common.length; i++) {
-    if (cdata["Season"].has(common[i]["Season"])) {
-      mySet3.add(common[i]["Season"]);
-    }
-  }
-  cdata["Season"] = mySet3;
-  vdata = common;
-  return {
-    ...state,
-    visibleData: vdata,
-    visibleKeys: vkeys,
-    colLoopData: cdata,
-  };
-}
-function locationDisplayUpdate(state, action) {
-  const { columns, data, selected } = state;
-  let vkeys = [];
-  for (let col of Object.keys(columns)) {
-    if (columns[col].display) {
-      vkeys.push(col);
-    }
-  }
-  let vdata = [];
-  let cdata = {};
-  for (let col of Object.keys(columns)) {
-    cdata[col] =
-      typeof columns[col].initdata === "function" && columns[col].initdata();
-  }
-  for (let i = 0; i < data.length; i++) {
-    let include = true;
-    let responsible = null;
-    for (let col of Object.keys(columns)) {
-      if (!columns[col].filter(data[i])) {
-        include = false;
-        if (responsible === null) {
-          responsible = col;
-        } else {
-          responsible = undefined;
-        }
-      }
-    }
-    
-    for (let col of Object.keys(columns)) {
-      if (columns[col].builder) {
-        cdata[col] = columns[col].builder(
-          data[i],
-          cdata[col],
-          include,
-          col === responsible
-        );
-      }
-    }
-
-    if (include) {
-      vdata.push(data[i]);
-    }
-    
-  }
-  let s = Array.from(selected);
-  let vselected = [];
-  for (let j = 0; j < s.length; j++) {
-    let toAdd = [];
-    for (let i = 0; i < vdata.length; i++) {
-      if (vdata[i]["Entry"] === s[j]) {
-        toAdd.push(vdata[i]);
-      }
-    } 
-    vselected.push(toAdd);
-  }
-  //check if multiple arrays have common elements
-  let common = [];
-  let location_array  = [];
-  for (let i = 0; i < vselected.length; i++) {
-    let toAdd = [];
-    for (let j = 0; j < vselected[i].length; j++) {
-      toAdd.push(vselected[i][j]["Location"]); 
-    }
-    location_array.push(toAdd);
-  }
-  let result = location_array.reduce((a, b) => a.filter(c => b.includes(c)));
-  let uniqueResult = [...new Set(result)];
-  for (let i = 0; i < vselected.length; i++) {
-    for (let j = 0; j < vselected[i].length; j++) {
-      if (uniqueResult.includes(vselected[i][j]["Location"])) {
-        common.push(vselected[i][j]);
-      }
-    }
-  }
-  vdata = common;
-  const mySet = new Set();
-  for (let i = 0; i < common.length; i++) {
-    if (cdata["Country"].has(common[i]["Country"])) {
-      mySet.add(common[i]["Country"]);
-    }
-  }
-  cdata["Country"] = mySet;
-  const mySet2 = new Set();
-  for (let i = 0; i < common.length; i++) {
-    if (cdata["Location"].has(common[i]["Location"])) {
-      mySet2.add(common[i]["Location"]);
-    }
-  }
-  cdata["Location"] = mySet2;
-  const mySet3 = new Set();
-  for (let i = 0; i < common.length; i++) {
-    if (cdata["Season"].has(common[i]["Season"])) {
-      mySet3.add(common[i]["Season"]);
-    }
-  }
-  cdata["Season"] = mySet3;
-
-  return {
-    ...state,
-    visibleData: vdata,
-    visibleKeys: vkeys,
-    colLoopData: cdata,
-  };
-}
 function dataDisplayUpdate(state, action) {
   const { columns, data } = state;
   let vkeys = [];
@@ -479,16 +267,7 @@ function reducer(state, action) {
       state = { ...state, columns: columns, selected: action.selected };
       state = countryDisplayUpdate(state, action);
       break;
-      case "SEASON_DISPLAY_UPDATE":
-      columns[action.col].filter = action.filter;
-      state = { ...state, columns: columns, selected: action.selected };
-      state = seasonDisplayUpdate(state, action);
-      break;
-      case "LOCATION_DISPLAY_UPDATE":
-      columns[action.col].filter = action.filter;
-      state = { ...state, columns: columns, selected: action.selected };
-      state = locationDisplayUpdate(state, action);
-      break;
+      
     default:
       break;
   }
@@ -629,28 +408,14 @@ function App() {
       </p>
       <div class="checkbox">
         <div class="center-text">
-        <p> If you wish select multiple entries, check the category you wish to find overlaps with. 
-          If you want to display all of the data, leave the checkboxes blank.</p>
-          </div>
-          <div class="center">
-      <Checkbox
-        label=" Country"
+        <p> If you wish to check for overlaps in multiple entries, check the box below. 
+           If you want to display all of the data, leave the checkbox blank.</p>
+          <Checkbox
         value={checkedCountry}
         onChange={handleChangeOne}
       />
-      {"    "}
-      <Checkbox
-        label=" Season"
-        value={checkedSeason}
-        onChange={handleChangeTwo}
-      />
-      {"    "}
-      <Checkbox
-        label=" Location"
-        value={checkedLocation}
-        onChange={handleChangeThree}
-      />
-      </div>
+          </div>
+          
     </div>
       <div className="d-flex flex-wrap justify-content-evenly">
         {filter_els}

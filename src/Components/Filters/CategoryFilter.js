@@ -19,10 +19,6 @@ function CatFilter({ col, struct, dispatch }) {
   let checkBoxUpdate;
   if (checks["countryDisplay"]) {
     checkBoxUpdate = "COUNTRY_DISPLAY_UPDATE";
-  } else if (checks["seasonDisplay"]) {
-    checkBoxUpdate = "SEASON_DISPLAY_UPDATE";
-  } else if (checks["locationDisplay"]) {
-    checkBoxUpdate = "LOCATION_DISPLAY_UPDATE";
   } else {
     checkBoxUpdate = "FILTER_UPDATE";
   }
