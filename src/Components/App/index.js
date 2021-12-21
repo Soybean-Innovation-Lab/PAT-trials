@@ -147,7 +147,7 @@ function countryDisplayUpdate(state, action) {
     } 
     vselected.push(entryList);
   }
-  let filterState = ["Country", "Season", "Location"];
+  let filterState = ["Location", "Season", "Country"];
   let filterData = [];
   for (let k = 0; k < filterState.length; k++) {
   let common = [];
@@ -155,7 +155,9 @@ function countryDisplayUpdate(state, action) {
   for (let i = 0; i < vselected.length; i++) {
     let toAdd = [];
     for (let j = 0; j < vselected[i].length; j++) {
-      toAdd.push(vselected[i][j][filterState[k]]); 
+      toAdd.push(vselected[i][j][filterState[0]]); 
+      toAdd.push(vselected[i][j][filterState[1]]); 
+      toAdd.push(vselected[i][j][filterState[2]]); 
     }
     country_array.push(toAdd);
   }
@@ -163,7 +165,9 @@ function countryDisplayUpdate(state, action) {
   let uniqueResult = [...new Set(result)];
   for (let i = 0; i < vselected.length; i++) {
     for (let j = 0; j < vselected[i].length; j++) {
-      if (uniqueResult.includes(vselected[i][j][filterState[k]])) {
+      if (uniqueResult.includes(vselected[i][j][filterState[0]]) 
+      && uniqueResult.includes(vselected[i][j][filterState[1]])
+      && uniqueResult.includes(vselected[i][j][filterState[2]])) {
         common.push(vselected[i][j]);
       }
     }
