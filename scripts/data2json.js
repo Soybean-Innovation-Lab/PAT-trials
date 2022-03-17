@@ -67,6 +67,21 @@ let data = Papa.parse(fs.createReadStream(proc.argv[2]), {
       "Organization_Partners",
       "Org_Type",
       "Org_Country",
+      "BB_Sev; DP",
+      "BB_range; DP",
+      "BP_Sev; DP",
+      "BP_range; DP",
+      "BS_Sev; DP", 
+      "BTS_Sev; DP",
+      "CLB_Sev; DP",
+      "DM_Sev; DP",
+      "MLS_Sev; DP",
+      "FELS_Sev; DP",
+      "FELS_range; DP",
+      "RLB_Sev; DP",
+      "RLB_range; DP",
+      "RUST_Sev; DP",
+      "RUST_range; DP"
     ];
 
     for (let key of SORTED_KEYS) {
