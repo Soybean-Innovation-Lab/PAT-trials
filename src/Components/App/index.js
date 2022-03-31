@@ -332,7 +332,7 @@ function App() {
   
   useEffect(() => {
     fetch(
-      "https://sil-soybean-data.s3.us-east-2.amazonaws.com/pat_db.json"
+      "https://sil-interactive-soybean-map-data-1.s3.amazonaws.com/pat_db.json"
     )
       .then((d) => d.json())
       .then((d) => {
